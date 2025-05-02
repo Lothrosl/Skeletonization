@@ -1,0 +1,55 @@
+﻿Subset Size,500,50,50,50,100,500,500,500
+Batch Size,8,8,8,8,8,32,32,32
+Epochs,50,50,50,50,20,25,25,50
+Learning Rate,0.001,0.001,0.01,0.1,0.001,0.01,0.001,0.001
+,,,,,,,,
+,,,,,,,,
+Test Loss,0.3055,0.4267,0.4001,0.4096,0.4226,0.3848,0.6087,0.3098
+MSE,1.3771,0.6263,0.4513,0.3837,0.6665,0.4549,1.7042,0.3672
+IoU,0.6187,0.5594,0.5371,0.5513,0.5507,0.5857,0.5648,0.7042
+Dice Coefficient,0.7582,0.7142,0.6959,0.7083,0.7075,0.7378,0.7176,0.8188
+,,,,,,,,
+Valence 1,(endpoints),,,,,,,
+Precision,0.5455,0.4361,0.4152,0.485,0.5791,0.4833,0.5711,0.5116
+recall ,0.5241,0.5889,0.4984,0.4294,0.5408,0.5296,0.4876,0.7052
+F1 Score,0.5189,0.4853,0.4427,0.4492,0.5406,0.4963,0.5538,0.5853
+,,,,,,,,
+Valence 2,(Continuations),,,,,,,
+Precision,0.9557,0.9448,0.95,0.9532,0.9484,0.9562,0.9621,0.9527
+Recall,0.604,0.5245,0.4393,0.4705,0.4437,0.4728,0.4023,0.7077
+F1 Score,0.7282,0.669,0.5946,0.6292,0.6003,0.6298,0.5538,0.802
+,,,,,,,,
+Valence 3,(T-junctions),,,,,,,
+Precision,0.3208,0.285,0.2669,0.279,0.2782,0.2703,0.2846,0.3304
+Recall,0.5992,0.5084,0.4756,0.4997,0.4954,0.4952,0.4571,0.6054
+F1 Score,0.4102,0.3523,0.3315,0.3354,0.3452,0.3442,0.3383,0.4199
+,,,,,,,,
+Valence 4,Crossings,,,,,,,
+Precision,0.2073,0.2148,0.1791,0.162,0.176,0.2092,0.1664,0.2483
+Recall,0.6571,0.5874,0.5041,0.5368,0.5608,0.5674,0.5857,0.601
+F1 Score,0.305,0.3012,0.2507,0.2428,0.2504,0.2903,0.2447,0.3423
+,,,,,,,,
+Dice Loss,,,,,,,,
+Smooth,1.00E-05,1.00E-05,1.00E-05,1.00E-05,,,,
+,,,,,,,,
+,,,,,,,,
+Double Conv,,,,,,,,
+,"Conv(in, out, ks =3, pad=1)","Conv(in, out, ks =3, pad=1)","Conv(in, out, ks =3, pad=1)","Conv(in, out, ks =3, pad=1)","Conv(in, out, ks =3, pad=1)","Conv(in, out, ks =3, pad=1)","Conv(in, out, ks =3, pad=1)","Conv(in, out, ks =3, pad=1)"
+,BatchNorm2d,BatchNorm2d,BatchNorm2d,BatchNorm2d,BatchNorm2d,BatchNorm2d,BatchNorm2d,BatchNorm2d
+,ReLU,ReLU,ReLU,ReLU,LeakyReLU,LeakyReLU,LeakyReLU,LeakyReLU
+,"Conv(out, out, ks =3, pad=1)","Conv(out, out, ks =3, pad=1)","Conv(out, out, ks =3, pad=1)","Conv(out, out, ks =3, pad=1)","Conv(out, out, ks =3, pad=1)","Conv(out, out, ks =3, pad=1)","Conv(out, out, ks =3, pad=1)","Conv(out, out, ks =3, pad=1)"
+,BatchNorm2d,BatchNorm2d,BatchNorm2d,BatchNorm2d,BatchNorm2d,BatchNorm2d,BatchNorm2d,BatchNorm2d
+,ReLU,ReLU,ReLU,ReLU,LeakyReLU,LeakyReLU,LeakyReLU,LeakyReLU
+,,,,,,,,
+Encoder,,,,,,,,
+,"Double Conv(n_channels, 64)","Double Conv(n_channels, 64)","Double Conv(n_channels, 64)","Double Conv(n_channels, 64)","Double Conv(n_channels, 64)","Double Conv(n_channels, 16)","Double Conv(n_channels, 16)","Double Conv(n_channels, 16)"
+,"Down(64, 128)","Down(64, 128)","Down(64, 128)","Down(64, 128)","Down(64, 128)","Double Conv(16, 32)","Double Conv(16, 32)","Double Conv(16, 32)"
+,"Down(128, 256)","Down(128, 256)","Down(128, 256)","Down(128, 256)","Down(128, 256)","Double Conv(32, 64)","Double Conv(32, 64)","Double Conv(32, 64)"
+,"Down(256, 512)","Down(256, 512)","Down(256, 512)","Down(256, 512)","Down(256, 512)","Double Conv(64, 128)","Double Conv(64, 128)","Double Conv(64, 128)"
+,"Down(512, 1024 // factor)","Down(512, 1024 // factor)","Down(512, 1024 // factor)","Down(512, 1024 // factor)","Down(512, 1024 // factor)","Double Conv(128, 256)","Double Conv(128, 256)","Double Conv(128, 256)"
+,,,,,,,,
+Decoder,,,,,,,,
+,"Up(1024, 512 // factor, bilinear)","Up(1024, 512 // factor, bilinear)","Up(1024, 512 // factor, bilinear)","Up(1024, 512 // factor, bilinear)","Up(1024, 512 // factor, bilinear)","Up(256, 128)","Up(256, 128)","Up(256, 128)"
+,"Up(512, 512 // factor, bilinear)","Up(512, 256 // factor, bilinear)","Up(512, 256 // factor, bilinear)","Up(512, 256 // factor, bilinear)","Up(512, 256 // factor, bilinear)","Up(128, 64)","Up(128, 64)","Up(128, 64)"
+,"Up(1024, 512 // factor, bilinear)","Up(256, 128 // factor, bilinear)","Up(256, 128 // factor, bilinear)","Up(256, 128 // factor, bilinear)","Up(256, 128 // factor, bilinear)","Up(64, 32)","Up(64, 32)","Up(64, 32)"
+,"Up(1024, 512 // factor, bilinear)","Up(128, 64, bilinear)","Up(128, 64, bilinear)","Up(128, 64, bilinear)","Up(128, 64, bilinear)","Up(32, 16)","Up(32, 16)","Up(32, 16)"

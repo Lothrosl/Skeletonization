@@ -1,0 +1,33 @@
+Road Skeleton Extraction - Evaluation Summary
+=========================================
+
+Test Loss: 0.3055
+
+Distance-based Metrics:
+Mean Squared Error (MSE): 1.3771
+
+Segmentation Metrics:
+Intersection over Union (IoU): 0.6187
+Dice Coefficient: 0.7582
+
+Node Detection Metrics:
+Valence 1 (endpoints):
+  Precision: 0.5455
+  Recall: 0.5241
+  F1 Score: 0.5189
+
+Valence 2 (continuations):
+  Precision: 0.9557
+  Recall: 0.6040
+  F1 Score: 0.7282
+
+Valence 3 (T-junctions):
+  Precision: 0.3208
+  Recall: 0.5993
+  F1 Score: 0.4102
+
+Valence 4 (crossings):
+  Precision: 0.2073
+  Recall: 0.6571
+  F1 Score: 0.3050
+
